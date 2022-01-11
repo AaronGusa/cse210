@@ -14,7 +14,7 @@ def main():
     win_condition = False
     
     # Main game loop
-    while win_condition == False:
+    while win_condition == False or win_condition != "draw":
         
         i = i + 1 
         print(f'\nTurn: {i}')
@@ -22,12 +22,12 @@ def main():
         tic_tac_maker(init_values)
         selection(init_values, xo)
 
-        win_condition = win_check(init_values)
+        win_condition = win_check(init_values, i)
 
-    print()
-    print(' ' * 6 + 'WINNER!')
-    tic_tac_maker(init_values)
-    winnerwinnerchickendinner(xo)
+
+    winnerwinnerchickendinner(xo, init_values, win_condition)
+    
+    
 
 
 # Functions
@@ -55,14 +55,14 @@ def selection(values, xo):
     choice = int(input(f"{xo}'s turn to choose a square (1-9): "))
     values[choice - 1] = xo
 
-def win_check(values):
+def win_check(values, turn_limit):
     if values[0] == "X" and values[1] == "X" and values[2] == "X":
         win_check = True
     elif values[0] == "X" and values[4] == "X" and values[8] == "X":
         win_check = True
     elif values[0] == "X" and values[3] == "X" and values[6] == "X":
         win_check = True
-    elif values[1 == "X"] and values[4] == "X" and values[7] == "X":
+    elif values[1] == "X" and values[4] == "X" and values[7] == "X":
         win_check = True
     elif values[2] == "X" and values[5] == "X" and values[8] == "X":
         win_check = True
@@ -80,13 +80,24 @@ def win_check(values):
         win_check = True
     elif values[2] == "O" and values[4] == "O" and values[6] == "O":
         win_check = True
+    elif turn_limit >= 8:
+        win_check = "draw"
     else:
         win_check = False
     
     return win_check
 
-def winnerwinnerchickendinner(xo):
-    print(f"Congratulations to {xo}!\n")
+def winnerwinnerchickendinner(xo, values, win_draw):
+    if win_draw == True:
+        print()
+        print(' ' * 6 + 'WINNER!')
+        tic_tac_maker(values)
+        print(f"Congratulations to {xo}!\n")
+    elif win_draw == "draw":
+        print()
+        print(' ' * 7 + 'DRAW!')
+        tic_tac_maker(values)
+        
 
 if __name__ == "__main__":
     main()
