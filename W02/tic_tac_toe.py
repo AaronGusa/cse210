@@ -70,6 +70,10 @@ def win_check(values, turn_limit):
         win_check = True
     elif values[2] == "X" and values[4] == "X" and values[6] == "X":
         win_check = True
+    elif values[3] == "X" and values[4] == "X" and values[5] == "X":
+        win_check = True
+    elif values[6] == "X" and values[7] == "X" and values[8] == "X":
+        win_check = True
     elif values[0] == "O" and values[1] == "O" and values[2] == "O":
         win_check = True
     elif values[0] == "O" and values[4] == "O" and values[8] == "O":
@@ -81,6 +85,10 @@ def win_check(values, turn_limit):
     elif values[2] == "O" and values[5] == "O" and values[8] == "O":
         win_check = True
     elif values[2] == "O" and values[4] == "O" and values[6] == "O":
+        win_check = True
+    elif values[3] == "O" and values[4] == "O" and values[5] == "O":
+        win_check = True
+    elif values[6] == "O" and values[7] == "O" and values[8] == "O":
         win_check = True
     elif turn_limit >= 8:
         win_check = "draw"
