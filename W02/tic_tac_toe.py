@@ -12,23 +12,25 @@ def main():
     init_values = [1,2,3,4,5,6,7,8,9]
     i = -1 
     win_condition = False
+    draw = False
     
     # Main game loop
-    while win_condition == False or win_condition != "draw":
-        
-        i = i + 1 
-        print(f'\nTurn: {i}')
-        xo = x_or_o(i)
-        tic_tac_maker(init_values)
-        selection(init_values, xo)
+    while win_condition == False:
+        if draw == False:
 
-        win_condition = win_check(init_values, i)
+            i = i + 1 
+            print(f'\nTurn: {i}')
+            xo = x_or_o(i)
+            tic_tac_maker(init_values)
+            selection(init_values, xo)
 
+            win_condition = win_check(init_values, i)
+        else:
+            win_condition = True
+            draw = True
 
-    winnerwinnerchickendinner(xo, init_values, win_condition)
+    winnerwinnerchickendinner(xo, init_values, win_condition, draw)
     
-    
-
 
 # Functions
 def tic_tac_maker(grid):
@@ -87,13 +89,13 @@ def win_check(values, turn_limit):
     
     return win_check
 
-def winnerwinnerchickendinner(xo, values, win_draw):
-    if win_draw == True:
+def winnerwinnerchickendinner(xo, values, win, draw):
+    if win == True and draw == False:
         print()
         print(' ' * 6 + 'WINNER!')
         tic_tac_maker(values)
         print(f"Congratulations to {xo}!\n")
-    elif win_draw == "draw":
+    else:
         print()
         print(' ' * 7 + 'DRAW!')
         tic_tac_maker(values)
